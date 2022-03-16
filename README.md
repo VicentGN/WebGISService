@@ -13,7 +13,7 @@ git clone https://github.com/VicentGN/WebGISService.git
 + Node v.14
 
 
-### Instalation 🔧
+### Install 🔧
 
 1. First steps: go to the cloned project and start up:
 ```
@@ -52,6 +52,5 @@ You will watch the welcome page.
 Endpoints only accept `FeatureCollections`. You can create them on [geojson.io](https://geojson.io/)
 
 ## Authors ✒️
-
 
 * **Vicent García** - *Web GIS Dev* - [VicentGN](https://github.com/vicentgn)
