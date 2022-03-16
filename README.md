@@ -39,13 +39,17 @@ You will watch the welcome page.
 ### Current endpoints:
 
 + `GET /` Welcome page
-+ `POST /buffer?distance={optional}&units={optional}` Get the buffer of a specific location. Requires a GeoJSON Point
++ `POST /buffer?distance={optional}&units={optional}` Get the buffer for a specific location. Requires a GeoJSON Point
 + `POST /centroid` Get the centroid of a polygon. Requires GeoJSON Polygon
 
 ##  🛠️
 
 * [ExpressJS](https://expressjs.com/) - Framework NodeJS
 * [TurfJS](http://turfjs.org/) - JS library for geospatial analysis
+
+## Limitations
+
+Endpoints only accept `FeatureCollections`. You can create them on [geojson.io](https://geojson.io/)
 
 ## Authors ✒️
 
