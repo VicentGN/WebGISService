@@ -50,6 +50,7 @@ You will watch the welcome page.
 
 * [ExpressJS](https://expressjs.com/) - Framework NodeJS
 * [TurfJS](http://turfjs.org/) - JS library for geospatial analysis
+* [Heroku](https://www.heroku.com) - Cloud application platform
 
 ## Authors ✒️
 
