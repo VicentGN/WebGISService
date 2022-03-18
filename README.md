@@ -40,8 +40,11 @@ You will watch the welcome page.
 ### Current endpoints:
 
 + `GET /` Welcome page
++ `POST /area` Returns the area of a polygon. Requires a GeoJSON Polygon
 + `POST /buffer?distance={optional}&units={optional}` Get the buffer for a specific location. Requires a GeoJSON Point
-+ `POST /centroid` Get the centroid of a polygon. Requires GeoJSON Polygon
++ `POST /centroid` Get the centroid of a polygon. Requires a GeoJSON Polygon
++ `POST /distance?units={optional}` Returns the distance between two points. Requires a FeatureCollection of points
++ `POST /length` Returns the length of a line in kilometers. Requires a GeoJSON LineString
 
 ##  🛠️
 
