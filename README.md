@@ -22,7 +22,7 @@ cd WebGISService
 npm i
 ```
 
-1. Create an `.env` file in the root folder. Example:
+2. Create an `.env` file in the root folder. Example:
 
 ```
 PORT=3000
@@ -31,7 +31,7 @@ PORT=3000
 3. Initialize the project:
 
 ```
-npm start
+npm run dev
 ```
 
 Next, open a web browser and go to `http://localhost:3000/`   
@@ -44,7 +44,7 @@ You will watch the welcome page.
 + `POST /buffer?distance={optional}&units={optional}` Get the buffer for a specific location. Requires a GeoJSON Point
 + `POST /centroid` Get the centroid of a polygon. Requires a GeoJSON Polygon
 + `POST /distance?units={optional}` Returns the distance between two points. Requires a FeatureCollection of points
-+ `POST /length` Returns the length of a line in kilometers. Requires a GeoJSON LineString
++ `POST /length?units={optional}` Returns the length of a line. Requires a GeoJSON LineString
 
 ##  🛠️
 
