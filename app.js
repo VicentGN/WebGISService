@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 app.use(express.json());
-const { getBuffer, getCentroid, getArea, getLength } = require('./gisUtils');
+const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
 
 app.get('/', (req, res) => {
     res.send('Welcome to WebGISService!');
@@ -29,6 +29,16 @@ app.post('/centroid', function(req, res) {
         res.sendStatus(400);
     } else {
         res.send(getCentroid(req));
+    }
+});
+
+app.post('/distance', function(req, res) {
+    if (req.body.type !== 'FeatureCollection' || req.body.features.length !== 2) {
+        res.sendStatus(400);
+    } else if (req.body.features[0].geometry.type !== 'Point' || req.body.features[1].geometry.type !== 'Point') {
+        res.sendStatus(400);
+    } else {
+        res.send(getDistance(req));
     }
 });
 
