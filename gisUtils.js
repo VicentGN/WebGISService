@@ -25,7 +25,7 @@ let getDistance = req => {
 
 let getLength = req => {
     let result = {};
-    result.value = turf.length(turf.lineString(req.body.geometry.coordinates));
+    result.value = turf.length(turf.lineString(req.body.geometry.coordinates), { units:  req.query.units || 'kilometers' });
     return result;
 };
 
