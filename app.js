@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/buffer', function(req, res) {
-    if (req.body.features[0].geometry.type !== 'Point') {
+    if (req.body.geometry.type !== 'Point') {
         res.sendStatus(400);
     } else {
         res.send(getBuffer(req));
@@ -17,7 +17,7 @@ app.post('/buffer', function(req, res) {
 });
 
 app.post('/centroid', function(req, res) {
-    if (req.body.features[0].geometry.type !== 'Polygon') {
+    if (req.body.geometry.type !== 'Polygon') {
         res.sendStatus(400);
     } else {
         res.send(getCentroid(req));

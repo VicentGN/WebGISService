@@ -47,10 +47,6 @@ You will watch the welcome page.
 * [ExpressJS](https://expressjs.com/) - Framework NodeJS
 * [TurfJS](http://turfjs.org/) - JS library for geospatial analysis
 
-## Limitations
-
-Endpoints only accept `FeatureCollections`. You can create them on [geojson.io](https://geojson.io/)
-
 ## Authors ✒️
 
 * **Vicent García** - *Web GIS Dev* - [VicentGN](https://github.com/vicentgn)
