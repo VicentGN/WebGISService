@@ -4,12 +4,14 @@ const app = express();
 app.use(express.json());
 const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
 
+// eslint max-len: ["error", { "code": 80 }]
+
 app.get('/', (req, res) => {
     res.send('Welcome to WebGISService!');
 });
 
-app.post('/area', function (req, res) {
-    if(req.body.geometry.type !== 'Polygon') {
+app.post('/area', function(req, res) {
+    if (req.body.geometry.type !== 'Polygon') {
         res.sendStatus(400);
     } else {
         res.send(getArea(req));
@@ -33,9 +35,11 @@ app.post('/centroid', function(req, res) {
 });
 
 app.post('/distance', function(req, res) {
-    if (req.body.type !== 'FeatureCollection' || req.body.features.length !== 2) {
+    if (req.body.type !== 'FeatureCollection' ||
+        req.body.features.length !== 2) {
         res.sendStatus(400);
-    } else if (req.body.features[0].geometry.type !== 'Point' || req.body.features[1].geometry.type !== 'Point') {
+    } else if (req.body.features[0].geometry.type !== 'Point' ||
+        req.body.features[1].geometry.type !== 'Point') {
         res.sendStatus(400);
     } else {
         res.send(getDistance(req));
