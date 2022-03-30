@@ -23,7 +23,10 @@
         "@turf/turf": "^6.5.0",
         "cors": "^2.8.5",
         "dotenv": "^16.0.0",
-        "express": "^4.17.3"
+        "express": "^4.17.3",
+        "swagger-ui-dist": "^4.9.1",
+        "swagger-ui-express": "^4.3.0",
+        "yamljs": "^0.3.0"
     },
     "devDependencies": {
         "eslint": "^8.8.0",
