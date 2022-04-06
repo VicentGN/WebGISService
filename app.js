@@ -9,7 +9,7 @@ const yaml = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = yaml.load('./swagger.yaml');
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
 
