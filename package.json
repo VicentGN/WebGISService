@@ -1,7 +1,7 @@
 {
     "name": "WebGISService",
     "version": "1.0.0",
-    "description": "",
+    "description": "Web GIS Service offers geospatial solutions from the backend",
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
@@ -12,9 +12,9 @@
         "type": "git",
         "url": "git+https://github.com/VicentGN/WebGISService.git"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "keywords": ["spatial", "web service", "GIS"],
+    "author": "Vicent García",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/VicentGN/WebGISService/issues"
     },
