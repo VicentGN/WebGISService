@@ -12,7 +12,11 @@
         "type": "git",
         "url": "git+https://github.com/VicentGN/WebGISService.git"
     },
-    "keywords": ["spatial", "web service", "GIS"],
+    "keywords": [
+        "spatial",
+        "web service",
+        "GIS"
+    ],
     "author": "Vicent García",
     "license": "MIT",
     "bugs": {
@@ -24,6 +28,7 @@
         "cors": "^2.8.5",
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
+        "jsonschema": "^1.4.0",
         "swagger-ui-dist": "^4.9.1",
         "swagger-ui-express": "^4.3.0",
         "yamljs": "^0.3.0"
