@@ -359,7 +359,7 @@ components:
 
   responses:
     'Error400BadRequest':
-      description: The JSON is not valid.
+      description: The GeoJSON is not valid.
       content:
         application/json:
           schema:
@@ -370,7 +370,9 @@ components:
                 enum: [400]
               'message': 
                 type: string
-                enum: ['The JSON is not valid.']
+                enum: ['The GeoJSON is not valid.']
+              'details':
+                type: array
     'Error401Unauthorized':
       description: The request requires an user authentication.
       content:
@@ -426,7 +428,7 @@ components:
                 type: string
                 enum: ['Headers sent in the request are not compatible with the service.']
     'Error408RequestTimeout':
-      description: >
+      description: 
         The client did not produce a request within the time that the server was
         prepared to wait. The client may repeat the request without
         modifications at any later time.
@@ -442,7 +444,7 @@ components:
                 type: string
                 enum: ['The client did not produce a request within the time that the server was prepared to wait. The client may repeat the request without modifications at any later time.']
     'Error410Gone':
-      description: >
+      description: 
         The requested resource is no longer available and will not be available
         again. The resource should be purged from the client system.
       content:
