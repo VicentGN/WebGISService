@@ -37,7 +37,9 @@ npm run dev
 Next, open a web browser and go to `http://localhost:3000/`   
 You will watch the welcome page. 
 
-### Current endpoints:
+### Endpoint documentation:
+
+Based on swagger platform: `https://<url>/docs`
 
 + `GET /` Welcome page
 + `POST /area` Returns the area of a polygon. Requires a GeoJSON Polygon
