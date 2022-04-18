@@ -40,6 +40,17 @@ paths:
   '/buffer':
     post:
       summary: Get the buffer of a point
+      parameters:
+        -in: query
+          name: distance
+          schema:
+            type: integer
+          description: distance definition
+        -in: query
+          name: units
+          schema:
+            type: string
+          description: units definition (km or miles)
       requestBody:
         content:
           application/json:
