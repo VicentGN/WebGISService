@@ -15,6 +15,10 @@ const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./g
 
 // eslint max-len: ["error", { "code": 80 }]
 
+app.get('/', function(req, res) {
+    res.redirect('/docs');
+})
+
 app.post('/area', function(req, res) {
     if (req.body.geometry.type !== 'Polygon') {
         res.sendStatus(400);
