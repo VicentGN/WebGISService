@@ -41,16 +41,16 @@ paths:
     post:
       summary: Get the buffer of a point
       parameters:
-        -in: query
+        - in: query
           name: distance
           schema:
             type: integer
-          description: distance definition
-        -in: query
+          description: The distance established for the buffer
+        - in: query
           name: units
           schema:
             type: string
-          description: units definition (km or miles)
+          description: Units defined as km or miles
       requestBody:
         content:
           application/json:
@@ -99,6 +99,12 @@ paths:
   '/distance':
     post:
       summary: Distance between two points in km
+      parameters:
+        - in: query
+          name: units
+          schema:
+            type: string
+          description: Units defined as km or miles
       requestBody:
         content:
           application/json:
@@ -119,6 +125,12 @@ paths:
   '/length':
     post:
       summary: Get the length of a LineString
+      parameters:
+        - in: query
+          name: units
+          schema:
+            type: string
+          description: Units defined as km or miles
       requestBody:
         content:
           application/json:
