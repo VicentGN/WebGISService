@@ -37,14 +37,9 @@ npm run dev
 Next, open a web browser and go to `http://localhost:3000/`   
 You will watch the welcome page. 
 
-### Current endpoints:
+### Endpoint documentation:
 
-+ `GET /` Welcome page
-+ `POST /area` Returns the area of a polygon. Requires a GeoJSON Polygon
-+ `POST /buffer?distance={optional}&units={optional}` Get the buffer for a specific location. Requires a GeoJSON Point
-+ `POST /centroid` Get the centroid of a polygon. Requires a GeoJSON Polygon
-+ `POST /distance?units={optional}` Returns the distance between two points. Requires a FeatureCollection of points
-+ `POST /length?units={optional}` Returns the length of a line. Requires a GeoJSON LineString
+You can find information about the endpoints here: `https://<url>/docs`
 
 ##  🛠️
 

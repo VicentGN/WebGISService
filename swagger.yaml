@@ -5,8 +5,9 @@ info:
   description: >
     Api Documentation for use. 
 
-    GeoJSON Spec is based on the incredible effort made by:
-    @zit0un: https://gist.github.com/zit0un/3ac0575eb0f3aabdc645c3faad47ab4a
+    GeoJSON Spec is based on the schema developed by @zit0un and others: 
+    
+    https://gist.github.com/zit0un/3ac0575eb0f3aabdc645c3faad47ab4a
 
 servers:
   - url: 'http://localhost:3000/'
@@ -30,11 +31,7 @@ paths:
         required: true
       responses:
         '200':
-          description: OK
-          content:  
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericUnitsResponse'
+          $ref: '#/components/responses/GenericUnitsResponse'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
         '500':
@@ -43,16 +40,113 @@ paths:
   '/buffer':
     post:
       summary: Get the buffer of a point
+      parameters:
+        - in: query
+          name: distance
+          schema:
+            type: integer
+          description: The distance established for the buffer
+        - in: query
+          name: units
+          schema:
+            type: string
+          description: Units defined as km or miles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Feature'
+            example:
+              type: "Feature"
+              properties: {}
+              geometry: {
+                type: "Point",
+                coordinates:  [ -2.779541015625, 39.66491373749128 ]
+              }
         required: true
       responses:
         '200':
-          description: the calculated buffer
           $ref: '#/components/schemas/Feature'
+        '400':
+          $ref: '#/components/responses/Error400BadRequest'
+        '500':
+          $ref: '#/components/responses/Error500InternalServerError'
+
+  '/centroid':
+    post:
+      summary: Get the centroid of a polygon
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feature'
+            example:
+              type: "Feature"
+              properties: {}
+              geometry: {
+                type: "Polygon",
+                coordinates:  [[ [-3.09814453125, 40.44694705960048] ,[-3.01025390625, 39.53793974517628], [-1.51611328125, 41.09591205639546], [-3.09814453125, 40.44694705960048] ]]
+              }
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/schemas/Feature'
+        '400':
+          $ref: '#/components/responses/Error400BadRequest'
+        '500':
+          $ref: '#/components/responses/Error500InternalServerError'
+
+  '/distance':
+    post:
+      summary: Distance between two points in km
+      parameters:
+        - in: query
+          name: units
+          schema:
+            type: string
+          description: Units defined as km or miles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureCollection'
+            example:
+              type: "FeatureCollection"
+              features: [ { properties: {}, geometry: { type: "Point", coordinates: [ -5.185546875, 42.16340342422401 ] } }, { properties: {}, geometry: { type: "Point", coordinates: [ -1.878662109375, 39.774769485295465 ] } }  ]
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/GenericUnitsResponse'
+        '400':
+          $ref: '#/components/responses/Error400BadRequest'
+        '500':
+          $ref: '#/components/responses/Error500InternalServerError'
+
+  '/length':
+    post:
+      summary: Get the length of a LineString
+      parameters:
+        - in: query
+          name: units
+          schema:
+            type: string
+          description: Units defined as km or miles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feature'
+            example:
+              type: "Feature"
+              properties: {}
+              geometry: {
+                type: "LineString",
+                coordinates:  [ [-3.09814453125, 40.44694705960048] , [-3.01025390625, 39.53793974517628] ]
+              }
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/GenericUnitsResponse'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
         '500':
@@ -349,17 +443,19 @@ components:
               items:
                 $ref: '#/components/schemas/GeometryElement'
               minItems: 0
-    'GenericUnitsResponse':
-      description: represents responses based on units (for distances, areas...)
-      type: 'object'
-      properties:
-        'value':
-          type: 
-            integer
 
   responses:
+    'GenericUnitsResponse':
+      description: Response based on units (for distances, areas...)
+      content: 
+        application/json:
+          schema: 
+            type: object
+            properties:
+              'value':
+                type: integer
     'Error400BadRequest':
-      description: The GeoJSON is not valid.
+      description: The JSON is not valid.
       content:
         application/json:
           schema:
@@ -370,120 +466,7 @@ components:
                 enum: [400]
               'message': 
                 type: string
-                enum: ['The GeoJSON is not valid.']
-              'details':
-                type: array
-    'Error401Unauthorized':
-      description: The request requires an user authentication.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [401]
-              'message': 
-                type: string
-                enum: ['The request requires an user authentication.']
-    'Error404NotFound':
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [404]
-              'message': 
-                type: string
-                enum: ['The resource was not found.']
-    'Error405MethodNotAllowed':
-      description:
-        Request method is not supported for the requested resource.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [405]
-              'message': 
-                type: string
-                enum: ['Request method is not supported for the requested resource.']
-    'Error406NotAcceptable':
-      description:
-        Headers sent in the request are not compatible with the service.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [406]
-              'message': 
-                type: string
-                enum: ['Headers sent in the request are not compatible with the service.']
-    'Error408RequestTimeout':
-      description: 
-        The client did not produce a request within the time that the server was
-        prepared to wait. The client may repeat the request without
-        modifications at any later time.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [408]
-              'message': 
-                type: string
-                enum: ['The client did not produce a request within the time that the server was prepared to wait. The client may repeat the request without modifications at any later time.']
-    'Error410Gone':
-      description: 
-        The requested resource is no longer available and will not be available
-        again. The resource should be purged from the client system.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [410]
-              'message': 
-                type: string
-                enum: ['The requested resource is no longer available and will not be available again. The resource should be purged from the client system.']
-    'Error423Locked':
-      description: The resource that is being accessed is locked.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [423]
-              'message': 
-                type: string
-                enum: ['The resource that is being accessed is locked.']
-    'Error429TooManyRequests':
-      description: The user has sent too many requests in a short period.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [429]
-              'message': 
-                type: string
-                enum: ['The user has sent too many requests in a short period.']
+                enum: ['The JSON is not valid.']
     'Error500InternalServerError':
       description: An unexpected error occured.
       content:
@@ -496,17 +479,4 @@ components:
                 enum: [500]
               'message': 
                 type: string
-                enum: ['An unexpected error occured.']
-    'Error503ServiceUnavailable':
-      description: The server is currently unable to handle the request.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [503]
-              'message': 
-                type: string
-                enum: ['The server is currently unable to handle the request.']    
+                enum: ['An unexpected error occured.']  

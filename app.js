@@ -20,6 +20,10 @@ const { isValidFeatureSchema } = require('./utils');
 
 // eslint max-len: ["error", { "code": 80 }]
 
+app.get('/', function(req, res) {
+    res.redirect('/docs');
+});
+
 app.post('/area', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
