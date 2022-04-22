@@ -20,7 +20,10 @@ function isValidFeatureCollectionSchema(req) {
     }
 }
 
+let response400Error = { status_code: 400, message: 'The GeoJSON is not valid' };
+
 module.exports = {
     isValidFeatureSchema,
-    isValidFeatureCollectionSchema
+    isValidFeatureCollectionSchema,
+    response400Error
 };

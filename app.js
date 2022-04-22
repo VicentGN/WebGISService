@@ -16,7 +16,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
 
 // GeoJSON validation
-const { isValidFeatureSchema } = require('./utils');
+const { isValidFeatureSchema, isValidFeatureCollectionSchema, response400Error } = require('./utils');
 
 // eslint max-len: ["error", { "code": 80 }]
 
@@ -27,10 +27,10 @@ app.get('/', function(req, res) {
 app.post('/area', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
+        res.status(400).send(response400Error);
     } else
     if (req.body.geometry.type !== 'Polygon') {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else {
         res.send(getArea(req));
     }
@@ -39,9 +39,9 @@ app.post('/area', function(req, res) {
 app.post('/buffer', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
+        res.status(400).send(response400Error);
     } else if (req.body.geometry.type !== 'Point') {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else {
         res.send(getBuffer(req));
     }
@@ -50,9 +50,9 @@ app.post('/buffer', function(req, res) {
 app.post('/centroid', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
+        res.status(400).send(response400Error);
     } else if (req.body.geometry.type !== 'Polygon') {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else {
         res.send(getCentroid(req));
     }
@@ -60,12 +60,15 @@ app.post('/centroid', function(req, res) {
 
 // TODO: Add validation for FeatureCollection Schema
 app.post('/distance', function(req, res) {
-    if (req.body.type !== 'FeatureCollection' ||
+    let schemaValidation = isValidFeatureCollectionSchema(req);
+    if (!schemaValidation.status) {
+        res.status(400).send(response400Error);
+    } else if (req.body.type !== 'FeatureCollection' ||
         req.body.features.length !== 2) {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else if (req.body.features[0].geometry.type !== 'Point' ||
         req.body.features[1].geometry.type !== 'Point') {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else {
         res.send(getDistance(req));
     }
@@ -74,9 +77,9 @@ app.post('/distance', function(req, res) {
 app.post('/length', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
+        res.status(400).send(response400Error);
     } else if (req.body.geometry.type !== 'LineString') {
-        res.sendStatus(400);
+        res.status(400).send(response400Error);
     } else {
         res.send(getLength(req));
     }
