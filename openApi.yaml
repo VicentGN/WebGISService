@@ -10,8 +10,8 @@ info:
     https://gist.github.com/zit0un/3ac0575eb0f3aabdc645c3faad47ab4a
 
 servers:
-  - url: 'http://localhost:3000/'
   - url: 'https://webgisservice.herokuapp.com/'
+  - url: 'http://localhost:3000/'
 
 paths:
   '/area':
