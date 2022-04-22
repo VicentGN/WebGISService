@@ -8,7 +8,7 @@ const yaml = require('yamljs');
 
 // Swagger
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = yaml.load('./swagger.yaml');
+const swaggerDocument = yaml.load('./openApi.yaml');
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
