@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "Web GIS Service offers geospatial solutions from the backend",
     "main": "app.js",
+    "engines": {
+        "node": "16.x"
+    },
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon -e js,yaml,json,md",
