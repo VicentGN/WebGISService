@@ -58,7 +58,6 @@ app.post('/centroid', function(req, res) {
     }
 });
 
-// TODO: Add validation for FeatureCollection Schema
 app.post('/distance', function(req, res) {
     let schemaValidation = isValidFeatureCollectionSchema(req);
     if (!schemaValidation.status) {
