@@ -35,8 +35,6 @@ paths:
           $ref: '#/components/responses/GenericUnitsResponse'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
-        '500':
-          $ref: '#/components/responses/Error500InternalServerError'
 
   '/buffer':
     post:
@@ -70,8 +68,6 @@ paths:
           $ref: '#/components/schemas/Feature'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
-        '500':
-          $ref: '#/components/responses/Error500InternalServerError'
 
   '/centroid':
     post:
@@ -94,8 +90,6 @@ paths:
           $ref: '#/components/schemas/Feature'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
-        '500':
-          $ref: '#/components/responses/Error500InternalServerError'
 
   '/distance':
     post:
@@ -120,8 +114,6 @@ paths:
           $ref: '#/components/responses/GenericUnitsResponse'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
-        '500':
-          $ref: '#/components/responses/Error500InternalServerError'
 
   '/length':
     post:
@@ -150,8 +142,6 @@ paths:
           $ref: '#/components/responses/GenericUnitsResponse'
         '400':
           $ref: '#/components/responses/Error400BadRequest'
-        '500':
-          $ref: '#/components/responses/Error500InternalServerError'
 
 components:
   schemas:
