@@ -37,11 +37,8 @@ npm run dev
 Next, open a web browser and go to `http://localhost:3000/`   
 You will watch the welcome page. 
 
-### Endpoint documentation:
 
-You can find information about the endpoints here: `https://<url>/docs`
-
-##  🛠️
+##  Technologies 🛠️ 
 
 * [ExpressJS](https://expressjs.com/) - Framework NodeJS
 * [TurfJS](http://turfjs.org/) - JS library for geospatial analysis
