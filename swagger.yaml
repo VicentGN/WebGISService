@@ -248,7 +248,7 @@ components:
         discriminator:
           propertyName: type
     'Feature':
-      description: GeoJSon 'Feature' object
+      description: GeoJSON 'Feature' object
       externalDocs:
         url: 'https://tools.ietf.org/html/rfc7946#section-3.2'
       allOf:
@@ -270,7 +270,7 @@ components:
             - type: number
             - type: string
     'FeatureCollection':
-      description: GeoJSon 'FeatureCollection' object
+      description: GeoJSON 'FeatureCollection' object
       externalDocs:
         url: 'https://tools.ietf.org/html/rfc7946#section-3.3'
       allOf:
@@ -455,7 +455,7 @@ components:
               'value':
                 type: integer
     'Error400BadRequest':
-      description: The JSON is not valid.
+      description: The GeoJSON is not valid.
       content:
         application/json:
           schema:
@@ -466,17 +466,4 @@ components:
                 enum: [400]
               'message': 
                 type: string
-                enum: ['The JSON is not valid.']
-    'Error500InternalServerError':
-      description: An unexpected error occured.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              'status_code':
-                type: integer
-                enum: [500]
-              'message': 
-                type: string
-                enum: ['An unexpected error occured.']  
+                enum: ['The GeoJSON is not valid.']

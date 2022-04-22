@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 app.post('/area', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid', details: schemaValidation.errors });
+        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
     } else
     if (req.body.geometry.type !== 'Polygon') {
         res.sendStatus(400);
@@ -39,7 +39,7 @@ app.post('/area', function(req, res) {
 app.post('/buffer', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid', details: schemaValidation.errors });
+        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
     } else if (req.body.geometry.type !== 'Point') {
         res.sendStatus(400);
     } else {
@@ -50,7 +50,7 @@ app.post('/buffer', function(req, res) {
 app.post('/centroid', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid', details: schemaValidation.errors });
+        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
     } else if (req.body.geometry.type !== 'Polygon') {
         res.sendStatus(400);
     } else {
@@ -74,7 +74,7 @@ app.post('/distance', function(req, res) {
 app.post('/length', function(req, res) {
     let schemaValidation = isValidFeatureSchema(req);
     if (!schemaValidation.status) {
-        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid', details: schemaValidation.errors });
+        res.status(400).send({ status_code: 400, message: 'The GeoJSON is not valid' });
     } else if (req.body.geometry.type !== 'LineString') {
         res.sendStatus(400);
     } else {
