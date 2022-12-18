@@ -16,7 +16,9 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
 
 // GeoJSON validation
-const { isValidFeatureSchema, isValidFeatureCollectionSchema, response400Error } = require('./utils');
+const { response200Error } = require('./utils/responses');
+const { schemaValidation } = require('./middleware/schemaValidation');
+const { geometryChecker } = require('./middleware/geometryChecker');
 
 // eslint max-len: ["error", { "code": 80 }]
 
@@ -24,64 +26,25 @@ app.get('/', function(req, res) {
     res.redirect('/docs');
 });
 
-app.post('/area', function(req, res) {
-    let schemaValidation = isValidFeatureSchema(req);
-    if (!schemaValidation.status) {
-        res.status(400).send(response400Error);
-    } else
-    if (req.body.geometry.type !== 'Polygon') {
-        res.status(400).send(response400Error);
-    } else {
-        res.send(getArea(req));
-    }
+app.post('/area', [schemaValidation.feature, geometryChecker.isPolygon], function(req, res) {
+    req.schemaValidation && req.geometryValidation ? res.status(200).send(getArea(req)) : res.status(200).send(response200Error);
 });
 
-app.post('/buffer', function(req, res) {
-    let schemaValidation = isValidFeatureSchema(req);
-    if (!schemaValidation.status) {
-        res.status(400).send(response400Error);
-    } else if (req.body.geometry.type !== 'Point') {
-        res.status(400).send(response400Error);
-    } else {
-        res.send(getBuffer(req));
-    }
+app.post('/buffer', [schemaValidation.feature, geometryChecker.isPoint], function(req, res) {
+    req.schemaValidation && req.geometryValidation ? res.status(200).send(getBuffer(req)) : res.status(200).send(response200Error);
 });
 
-app.post('/centroid', function(req, res) {
-    let schemaValidation = isValidFeatureSchema(req);
-    if (!schemaValidation.status) {
-        res.status(400).send(response400Error);
-    } else if (req.body.geometry.type !== 'Polygon') {
-        res.status(400).send(response400Error);
-    } else {
-        res.send(getCentroid(req));
-    }
+app.post('/centroid', [schemaValidation.feature, geometryChecker.isPolygon], function(req, res) {
+    req.schemaValidation && req.geometryValidation ? res.status(200).send(getCentroid(req)) : res.status(200).send(response200Error);
 });
 
-app.post('/distance', function(req, res) {
-    let schemaValidation = isValidFeatureCollectionSchema(req);
-    if (!schemaValidation.status) {
-        res.status(400).send(response400Error);
-    } else if (req.body.type !== 'FeatureCollection' ||
-        req.body.features.length !== 2) {
-        res.status(400).send(response400Error);
-    } else if (req.body.features[0].geometry.type !== 'Point' ||
-        req.body.features[1].geometry.type !== 'Point') {
-        res.status(400).send(response400Error);
-    } else {
-        res.send(getDistance(req));
-    }
+app.post('/distance', [schemaValidation.featureCollection, geometryChecker.isMultiPoint], function(req, res) {
+    req.schemaValidation && req.geometryValidation ? res.status(200).send(getDistance(req)) : res.status(200).send(response200Error);
+
 });
 
-app.post('/length', function(req, res) {
-    let schemaValidation = isValidFeatureSchema(req);
-    if (!schemaValidation.status) {
-        res.status(400).send(response400Error);
-    } else if (req.body.geometry.type !== 'LineString') {
-        res.status(400).send(response400Error);
-    } else {
-        res.send(getLength(req));
-    }
+app.post('/length', [schemaValidation.feature, geometryChecker.isLineString], function(req, res) {
+    req.schemaValidation && req.geometryValidation ? res.status(200).send(getLength(req)) : res.status(200).send(response200Error);
 });
 
 
