@@ -13,7 +13,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Turf Tools
-const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./gisUtils');
+const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('./spatialTools');
 
 // GeoJSON validation
 const { response200Error } = require('./utils/responses');
