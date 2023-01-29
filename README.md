@@ -1,7 +1,7 @@
 # WebGISService
 
 WebGISService. Geospatial operations running on backend. Based on NodeJS/ExpressJS and TurfJS.  
-Try the demo deployed on Heroku: https://webgisservice.herokuapp.com/
+Try the demo: https://web-gis-service.onrender.com
 ## Starting 🚀
 
 ```
@@ -42,7 +42,7 @@ You will watch the welcome page.
 
 * [ExpressJS](https://expressjs.com/) - Framework NodeJS
 * [TurfJS](http://turfjs.org/) - JS library for geospatial analysis
-* [Heroku](https://www.heroku.com) - Cloud application platform
+* [Render](https://render.com/) - Cloud application platform
 
 ## Authors ✒️
 
