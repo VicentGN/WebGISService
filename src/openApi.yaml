@@ -10,7 +10,7 @@ info:
     More info about the project can be found [here](https://github.com/VicentGN/WebGISService)
 
 servers:
-  - url: 'https://webgisservice.herokuapp.com/'
+  - url: 'https://web-gis-service.onrender.com/'
   - url: 'http://localhost:3000/'
 
 paths:
