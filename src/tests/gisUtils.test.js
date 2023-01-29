@@ -1,4 +1,4 @@
-const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('../gisUtils');
+const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('../utils/spatialTools');
 
 /* eslint-disable */
 

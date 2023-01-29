@@ -1,5 +1,5 @@
 const validate = require('jsonschema').validate;
-const { featureSchema, featureCollectionSchema } = require('../assets/geojsonSchemas');
+const { featureSchema, featureCollectionSchema } = require('../../assets/geojsonSchemas');
 
 
 const schemaValidation = {

@@ -8,7 +8,7 @@ const yaml = require("yamljs");
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = yaml.load("./openApi.yaml");
+const swaggerDocument = yaml.load("./src/openApi.yaml");
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Turf Tools
@@ -18,7 +18,7 @@ const {
 	getArea,
 	getLength,
 	getDistance,
-} = require("./spatialTools");
+} = require("./utils/spatialTools");
 
 // GeoJSON validation
 const {response200Error} = require("./utils/responses");
