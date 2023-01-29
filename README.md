@@ -1,6 +1,6 @@
 # WebGISService
 
-WebGISService. Geospatial operations running on backend. Based on NodeJS/ExpressJS and TurfJS.  
+WebGISService. Geospatial operations running as a service. Based on NodeJS/ExpressJS and TurfJS.  
 Try the demo: https://web-gis-service.onrender.com
 ## Starting 🚀
 
