@@ -5,11 +5,9 @@ info:
   description: >
     Api Documentation for use. 
 
-    GeoJSON Spec is based on the schema developed by @zit0un and others: 
-    
-    https://gist.github.com/zit0un/3ac0575eb0f3aabdc645c3faad47ab4a  
+    GeoJSON Spec is based on the schema developed by [@zit0un and others](https://gist.github.com/zit0un/3ac0575eb0f3aabdc645c3faad47ab4a)
 
-    More info about the project can be found here: https://github.com/VicentGN/WebGISService
+    More info about the project can be found [here](https://github.com/VicentGN/WebGISService)
 
 servers:
   - url: 'https://webgisservice.herokuapp.com/'

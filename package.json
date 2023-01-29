@@ -9,6 +9,7 @@
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon -e js,yaml,json,md",
+        "build": "npm i",
         "test": "jest"
     },
     "repository": {
