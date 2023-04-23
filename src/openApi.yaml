@@ -14,8 +14,10 @@ servers:
   - url: 'http://localhost:3000/'
 
 paths:
-  '/area':
+  '/measurement/area':
     post:
+      tags:
+        - Measurement
       summary: Get the area of a polygon
       requestBody:
         content:
@@ -36,8 +38,10 @@ paths:
         '400':
           $ref: '#/components/responses/Error400BadRequest'
 
-  '/buffer':
+  '/transformation/buffer':
     post:
+      tags:
+        - Transformation
       summary: Get the buffer of a point
       parameters:
         - in: query
@@ -69,8 +73,10 @@ paths:
         '400':
           $ref: '#/components/responses/Error400BadRequest'
 
-  '/centroid':
+  '/measurement/centroid':
     post:
+      tags:
+        - Measurement
       summary: Get the centroid of a polygon
       requestBody:
         content:
@@ -91,8 +97,10 @@ paths:
         '400':
           $ref: '#/components/responses/Error400BadRequest'
 
-  '/distance':
+  '/measurement/distance':
     post:
+      tags:
+        - Measurement
       summary: Distance between two points in kilometers
       parameters:
         - in: query
@@ -115,8 +123,10 @@ paths:
         '400':
           $ref: '#/components/responses/Error400BadRequest'
 
-  '/length':
+  '/measurement/length':
     post:
+      tags:
+        - Measurement
       summary: Get the length of a LineString
       parameters:
         - in: query
