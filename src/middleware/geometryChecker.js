@@ -31,6 +31,18 @@ const geometryChecker = {
 		}
 		next();
 	},
+
+	isMultiPolygon: (req, res, next) => {
+		req.geometryValidation = true;
+		let counter = 0;
+		while (req.geometryValidation && counter < req.body.features.length) {
+			req.body.features[counter].geometry.type !== "Polygon"
+				? (req.geometryValidation = !req.geometryValidation)
+				: false;
+			counter += 1;
+		}
+		next();
+	}
 };
 
 module.exports = { geometryChecker };

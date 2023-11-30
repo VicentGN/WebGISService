@@ -29,10 +29,15 @@ function getLength(req) {
     return result;
 }
 
+function generateUnion(req) {
+    return turf.union(req.body.features[0].geometry, req.body.features[1].geometry);
+}
+
 module.exports = {
     getArea,
     getBuffer,
     getCentroid,
     getDistance,
-    getLength
+    getLength,
+    generateUnion
 };

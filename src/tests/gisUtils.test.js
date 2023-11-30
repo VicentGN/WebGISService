@@ -1,4 +1,4 @@
-const { getBuffer, getCentroid, getArea, getLength, getDistance } = require('../utils/spatialTools');
+const { getBuffer, getCentroid, getArea, getLength, getDistance, generateUnion } = require('../utils/spatialTools');
 
 /* eslint-disable */
 
@@ -242,26 +242,26 @@ test('Distance - The distance between two points located at Madrid and Paris ret
         'body': {
             'type': 'FeatureCollection',
             'features': [{
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-3.703594207763672,
-                            40.41650209415018
-                        ]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [
-                            2.349700927734375,
-                            48.85409863123821
-                        ]
-                    }
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.703594207763672,
+                        40.41650209415018
+                    ]
                 }
+            },
+            {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [
+                        2.349700927734375,
+                        48.85409863123821
+                    ]
+                }
+            }
             ]
         },
         'query': {
@@ -297,5 +297,121 @@ test('Length - The length of a LineString between Madrid and Paris returns and o
     };
     expect(getLength(request)).toStrictEqual({
         'value': 1052.6379467656054
+    });
+});
+
+test('Union - Returns a geojson which represents the union of two polygons', () => {
+    let request = {
+        "body": {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                [
+                                    -0.6527133205163693,
+                                    38.94308627185015
+                                ],
+                                [
+                                    -0.6531133761062904,
+                                    38.93495141557506
+                                ],
+                                [
+                                    -0.6389971288921856,
+                                    38.93717414656126
+                                ],
+                                [
+                                    -0.6527133205163693,
+                                    38.94308627185015
+                                ]
+                            ]
+                        ],
+                        "type": "Polygon"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                [
+                                    -0.6432262879764039,
+                                    38.94375302196417
+                                ],
+                                [
+                                    -0.6455123199141326,
+                                    38.9377520452054
+                                ],
+                                [
+                                    -0.639111430488498,
+                                    38.931972846831826
+                                ],
+                                [
+                                    -0.6432262879764039,
+                                    38.94375302196417
+                                ]
+                            ]
+                        ],
+                        "type": "Polygon"
+                    }
+                }
+            ]
+        }
+    };
+
+    expect(generateUnion(request)).toStrictEqual({
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        -0.6531133761062904,
+                        38.93495141557506
+                    ],
+                    [
+                        -0.6439998007464014,
+                        38.936386430564546
+                    ],
+                    [
+                        -0.639111430488498,
+                        38.931972846831826
+                    ],
+                    [
+                        -0.6408275861602514,
+                        38.936885924484464
+                    ],
+                    [
+                        -0.6389971288921856,
+                        38.93717414656126
+                    ],
+                    [
+                        -0.6412705526271958,
+                        38.93815406623025
+                    ],
+                    [
+                        -0.6432262879764039,
+                        38.94375302196417
+                    ],
+                    [
+                        -0.644782512494943,
+                        38.93966783530818
+                    ],
+                    [
+                        -0.6527133205163693,
+                        38.94308627185015
+                    ],
+                    [
+                        -0.6531133761062904,
+                        38.93495141557506
+                    ]
+                ]
+            ]
+        }
     });
 });

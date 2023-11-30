@@ -153,6 +153,26 @@ paths:
         '400':
           $ref: '#/components/responses/Error400BadRequest'
 
+  '/transformation/union':
+    post:
+      tags:
+        - Transformation
+      summary: Generates the union of two polygons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeatureCollection'
+            example:
+              type: "FeatureCollection"
+              features: [ { properties: {}, geometry: { type: "Polygon", coordinates: [ [[-0.6623169926413937,38.94194348797984],[-0.6611059152664609,38.921217434663276],[-0.6347313413412792,38.919123557155814],[-0.6219477468355308,38.941629502057225],[-0.638230009310206,38.95366463409539],[-0.6623169926413937,38.94194348797984]] ] } }, { properties: {}, geometry: { type: "Polygon", coordinates: [ [[-0.6289450827758856,38.949374082274716],[-0.6430743188073507,38.938070897756376],[-0.6156232316593275,38.92268311215412],[-0.59624599367325,38.94089686283033],[-0.6289450827758856,38.949374082274716]] ] } }  ]
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          $ref: '#/components/responses/Error400BadRequest'
+
 components:
   schemas:
     'GeoJsonObject':
